@@ -1,8 +1,6 @@
 const inquirer = require('inquirer');
 const pageTemplate = require('./src/page_template')
 
-pageTemplate.generateManager()
-
 
 // employee arrays
 var managerArry = []
@@ -15,7 +13,7 @@ function manager() {
     .prompt([
         {
             type: 'input',
-            name:'ManagerName',
+            name:'managerName',
             message: "Please enter Manager's name.",
             validate: managerNameInput => {
                 if (managerNameInput) {
@@ -70,7 +68,7 @@ function manager() {
         managerArry.push(data)
         init()
     })
-    
+
 };
 
 // creating Engineer
@@ -96,8 +94,8 @@ function manager() {
 
 // creating HTML
 function generateHTML() {
+    console.log(pageTemplate.generateManager(managerArry))
     pageTemplate.generateManager()
-
 }
 
 
@@ -129,11 +127,20 @@ const init = () => {
                 case 'Manager': 
                     manager()
                     break;
-                default:
+                case 'Create Team':
                     generateHTML()
+                    break;
               }
 
         })
     }
+
+// Create a function to write index.html
+// function createHTML()
+//     fs.writeFile('./dist/index.html', 'Hello content!', function (err) {
+//         if (err) throw err;
+//         console.log('Saved!');
+//     });
+
 
 init();
