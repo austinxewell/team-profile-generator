@@ -70,6 +70,7 @@ function manager() {
         managerArry.push(data)
         init()
     })
+    
 };
 
 // creating Engineer
@@ -102,7 +103,7 @@ function generateHTML() {
 
 
 
-
+// prompt to start collecting information
 const init = () => {
     inquirer
     .prompt(

@@ -1,13 +1,9 @@
 
 
-
-
-
-
-
-
 function generateManager() {
-    console.log('hi')
+    return `
+    
+    `
 }
 
 
