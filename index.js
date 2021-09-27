@@ -93,7 +93,7 @@ function manager() {
 
 
 // creating HTML
-function generateHTML() {
+function generateHTMLContent() {
     console.log(pageTemplate.generateManager(managerArry))
     pageTemplate.generateManager()
 }
@@ -110,25 +110,25 @@ const init = () => {
             name:'option',
             message: "Please choose an option",
             choices: [
+                'Manager',
                 'Engineer',
                 'Intern',
-                'Manager',
                 'Create Team'
             ],
         })
         .then(data => {
             switch (data.option) {
+                case 'Manager': 
+                    manager()
+                    break;
                 case 'Engineer':
                 // 
                     break;
                 case 'Intern':
                 // 
                     break;
-                case 'Manager': 
-                    manager()
-                    break;
                 case 'Create Team':
-                    generateHTML()
+                    generateHTMLContent()
                     break;
               }
 

@@ -2,11 +2,11 @@
 
 function generateManager(data) {
     
-    const {managerName, managerId, managerEmail, managerOfficeNumber} = data;
+    // const {managerName, managerId, managerEmail, managerOfficeNumber} = data;
 
     var managerCards = ''
 
-    for (var i=0; i<data.length; ++i){
+    for (var i=0; i < data.length; ++i){
             managerCards = managerCards + `
                 <div class='column'>
                     <div class="card">
