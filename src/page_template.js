@@ -1,8 +1,6 @@
 
 
 function generateManager(data) {
-    
-    // const {managerName, managerId, managerEmail, managerOfficeNumber} = data;
 
     var managerCards = ''
 

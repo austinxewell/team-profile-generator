@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const pageTemplate = require('./src/page_template')
+const fs = require('fs')
 
 
 // employee arrays
@@ -7,8 +8,9 @@ var managerArry = []
 var engineerArry = []
 var internArry = []
 
-// creating managment
-function manager() {
+// creating managment and initilazing team
+const init = () => {
+    const teamInfo = []
     inquirer
     .prompt([
         {
@@ -62,85 +64,36 @@ function manager() {
                     return false;
                 }
             }
-        }],
-    )
-    .then(data => {
-        managerArry.push(data)
-        init()
-    })
-
-};
-
-// creating Engineer
-
-
-
-
-
-
-
-
-
-
-// creating Intern
-
-
-
-
-
-
-
-
-
-// creating HTML
-function generateHTMLContent() {
-    console.log(pageTemplate.generateManager(managerArry))
-    pageTemplate.generateManager()
-}
-
-
-
-
-// prompt to start collecting information
-const init = () => {
-    inquirer
-    .prompt(
+        },
         {
             type: 'list',
             name:'option',
-            message: "Please choose an option",
+            message: "What type of employee would you like to add to your team?",
             choices: [
-                'Manager',
                 'Engineer',
                 'Intern',
                 'Create Team'
             ],
-        })
+        }
+    ])
         .then(data => {
             switch (data.option) {
-                case 'Manager': 
-                    manager()
-                    break;
                 case 'Engineer':
-                // 
+                    addEngineer(teamInfo);
                     break;
                 case 'Intern':
-                // 
+                    addIntern(teamInfo);
                     break;
                 case 'Create Team':
-                    generateHTMLContent()
-                    break;
+                    finalizeTeam(teamInfo)
               }
 
         })
     }
 
-// Create a function to write index.html
-// function createHTML()
-//     fs.writeFile('./dist/index.html', 'Hello content!', function (err) {
-//         if (err) throw err;
-//         console.log('Saved!');
-//     });
+
+
+
 
 
 init();
