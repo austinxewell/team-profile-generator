@@ -79,10 +79,10 @@ const init = () => {
         .then(data => {
             switch (data.option) {
                 case 'Engineer':
-                    addEngineer(teamInfo);
+                    engineer(teamInfo);
                     break;
                 case 'Intern':
-                    addIntern(teamInfo);
+                    intern(teamInfo);
                     break;
                 case 'Create Team':
                     finalizeTeam(teamInfo)
@@ -91,8 +91,91 @@ const init = () => {
         })
     }
 
+// create engineer
 
+const engineer = (teamInfo) => {
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: "Please enter engineer's name:",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the engineer's name");
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Please enter engineer's id:",
+            validate: idInput => {
+                if (idInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the engineer's id number");
+                    return false;
+                }
+            }
+        }, 
+        {
+            type: 'input',
+            name: 'email',
+            message: "Please enter engineer's email:",
+            validate: emailInput => {
+                if (emailInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the engineer's email");
+                    return false;
+                }
+            }
+        }, 
+        {
+            type: 'input',
+            name: 'github',
+            message: "Please enter engineer's GitHub username:",
+            validate: githubInput => {
+                if (githubInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the engineer's GitHub username");
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'list',
+            name: 'addTeamMember',
+            message: 'Select a team member to add:',
+            choices: [
+                'Engineer',
+                'Intern',
+                "I'm done adding team members"
+            ]
+        }
+    ]).then(engineerData => {
+        const { addTeamMember } = engineerData;
+        const engineer = new Engineer(engineerData);
 
+        teamData.push(engineer);
+
+        switch (addTeamMember) {
+            case 'Engineer':
+                engineer(teamInfo);
+                break;
+            case 'Intern':
+                intern(teamInfo);
+                break;
+            case 'Create Team':
+                finalizeTeam(teamInfo)
+        }
+    })
+}
 
 
 
