@@ -1,12 +1,9 @@
 const inquirer = require('inquirer');
-const pageTemplate = require('./src/page_template')
-const fs = require('fs')
-
-
-// employee arrays
-var managerArry = []
-var engineerArry = []
-var internArry = []
+const pageTemplate = require('./src/page_template');
+const fs = require('fs');
+const Manager = require('./lib/Manager');
+const Intern = require('./lib/Intern');
+const Engineer = require('./lib/Engineer')
 
 // creating managment and initilazing team
 const init = () => {
@@ -76,24 +73,29 @@ const init = () => {
             ],
         }
     ])
-        .then(data => {
-            switch (data.option) {
-                case 'Engineer':
-                    engineer(teamInfo);
-                    break;
-                case 'Intern':
-                    intern(teamInfo);
-                    break;
-                case 'Create Team':
-                    finalizeTeam(teamInfo)
-              }
+    .then(managerInfo => {
+        const { addTeamMember } = managerInfo;
 
-        })
-    }
+        const manager = new Manager(managerInfo);
+
+        teamInfo.push(manager);
+
+        switch (addTeamMember) {
+            case 'Engineer':
+                addEngineer(teamData);
+                break;
+            case 'Intern':
+                addIntern(teamData);
+                break;
+            case "I'm done adding team members":
+                finalizeTeam(teamData);
+        }
+    })
+}
 
 // create engineer
 
-const engineer = (teamInfo) => {
+const addEngineer = (teamInfo) => {
     inquirer
     .prompt([
         {
@@ -155,27 +157,129 @@ const engineer = (teamInfo) => {
             choices: [
                 'Engineer',
                 'Intern',
-                "I'm done adding team members"
+                'Create Team'
             ]
         }
-    ]).then(engineerData => {
-        const { addTeamMember } = engineerData;
-        const engineer = new Engineer(engineerData);
+    ]).then(engineerInfo => {
+        const { addTeamMember } = engineerInfo;
+        const engineer = new Engineer(engineerInfo);
 
-        teamData.push(engineer);
+        teamInfo.push(engineer);
 
         switch (addTeamMember) {
             case 'Engineer':
-                engineer(teamInfo);
+                addEngineer(teamInfo);
                 break;
             case 'Intern':
-                intern(teamInfo);
+                addIntern(teamInfo);
                 break;
             case 'Create Team':
                 finalizeTeam(teamInfo)
         }
     })
 }
+
+// create intern
+const addIntern = (teamInfo) => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: "Please enter intern's name:",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the intern's name");
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Please enter intern's id:",
+            validate: idInput => {
+                if (idInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the intern's id number");
+                    return false;
+                }
+            }
+        }, 
+        {
+            type: 'input',
+            name: 'email',
+            message: "Please enter intern's email:",
+            validate: emailInput => {
+                if (emailInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the intern's email");
+                    return false;
+                }
+            }
+        }, 
+        {
+            type: 'input',
+            name: 'school',
+            message: "Please enter intern's school:",
+            validate: schoolInput => {
+                if (schoolInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the intern's school");
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'list',
+            name: 'addTeamMember',
+            message: 'Select a team member to add:',
+            choices: [
+                'Engineer',
+                'Intern',
+                'Create Team'
+            ]
+        }
+    ]).then(internInfo => {
+        const { addTeamMember } = internInfo;
+        const intern = new Intern(internInfo);
+
+        teamInfo.push(intern);
+
+        switch (addTeamMember) {
+            case 'Engineer':
+                addEngineer(teamInfo);
+                break;
+            case 'Intern':
+                addIntern(teamInfo);
+                break;
+            case 'Create Team':
+                finalizeTeam(teamInfo);
+        }
+    })
+}
+
+
+const writeToFile = (data) => {
+    fs.writeFile('./dist/index.html', data, err => {
+        if (err) {
+            console.log(err);
+        }
+
+        console.log('File Created');
+    })
+}
+
+const finalizeTeam = teamInfo => {
+    const generateHTML = pageTemplate(teamInfo);
+    writeToFile(generateHTML);
+}
+
+
 
 
 
