@@ -6,9 +6,6 @@ const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer')
 
 
-
-
-
 // creating managment and initilazing team
 const init = () => {
     const teamInfo = []
@@ -78,27 +75,26 @@ const init = () => {
         }
     ])
     .then(managerInfo => {
-        const { addTeamMember } = managerInfo;
+        const { option } = managerInfo;
 
         const manager = new Manager(managerInfo);
 
         teamInfo.push(manager);
 
-        switch (addTeamMember) {
+        switch (option) {
             case 'Engineer':
-                addEngineer(teamData);
+                addEngineer(teamInfo);
                 break;
             case 'Intern':
-                addIntern(teamData);
+                addIntern(teamInfo);
                 break;
-            case "I'm done adding team members":
-                finalizeTeam(teamData);
+            case "Create Team":
+                finalizeTeam(teamInfo);
         }
     })
 }
 
 // create engineer
-
 const addEngineer = (teamInfo) => {
     inquirer
     .prompt([
@@ -151,7 +147,7 @@ const addEngineer = (teamInfo) => {
                 } else {
                     console.log("Please enter the engineer's GitHub username");
                     return false;
-                }
+                }q
             }
         },
         {
@@ -282,9 +278,6 @@ const finalizeTeam = teamInfo => {
     const generateHTML = pageTemplate(teamInfo);
     writeToFile(generateHTML);
 }
-
-
-
 
 
 init();

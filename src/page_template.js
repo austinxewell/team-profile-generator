@@ -53,7 +53,7 @@ const engineerCard = (teamInfo) => {
 }
 
 const internCards = (teamInfo) => {
-    const interns = teamInfo.filter(employeea => employee.getRole() === 'Intern');
+    const interns = teamInfo.filter(employee => employee.getRole() === 'Intern');
 
     return interns.map((intern) => {
         return `
@@ -70,7 +70,7 @@ const internCards = (teamInfo) => {
               </div>                  
               <div class="content  has-text-centered">
                 <p>ID:${intern.getId()}</p>
-                <p>Email:${intern.getEmail()}">${intern.getEmail()}</a></p>
+                <p>Email:<a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></p>
                 <p>School:${intern.getSchool()}</p>
               </div>
             </div>
