@@ -5,15 +5,13 @@ const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer')
 
-
-// creating managment and initilazing team
 const init = () => {
     const teamInfo = []
     inquirer
     .prompt([
         {
             type: 'input',
-            name:'managerName',
+            name:'name',
             message: "Please enter Manager's name.",
             validate: managerNameInput => {
                 if (managerNameInput) {
@@ -26,7 +24,7 @@ const init = () => {
         },
         {
             type: 'input',
-            name: 'managerId',
+            name: 'id',
             message: "Please enter the Manager's employee ID.",
             validate: managerIdInput => {
                 if (managerIdInput) {
@@ -39,7 +37,7 @@ const init = () => {
         },
         {
             type: 'input',
-            name: 'managerEmail',
+            name: 'email',
             message: "Please enter the Manager's email.",
             validate: managerEmailInput => {
                 if (managerEmailInput) {
@@ -52,7 +50,7 @@ const init = () => {
         },
         {
             type: 'input',
-            name: 'managerOfficeNumber',
+            name: 'officeNumber',
             message: "Please enter the Manager's office number.",
             validate: managerOfficeNumberInput => {
                 if (managerOfficeNumberInput) {
@@ -270,7 +268,7 @@ const writeToFile = (data) => {
             console.log(err);
         }
 
-        console.log('File Created');
+        console.log('File Created! Check dist folder for index.html');
     })
 }
 
@@ -278,6 +276,5 @@ const finalizeTeam = teamInfo => {
     const generateHTML = pageTemplate(teamInfo);
     writeToFile(generateHTML);
 }
-
 
 init();

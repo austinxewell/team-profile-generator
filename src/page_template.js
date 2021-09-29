@@ -9,14 +9,14 @@ const managerCard = (teamInfo) => {
             <div class="media-left">
             </div>
             <div class="media-content has-background-info py-2">
-                <p class="title is-4 has-text-white-bis">${manager.getName()}</p>
-                <p class="title is-5 has-text-white-bis">Manager</p>
+                <p class="title is-4 has-text-white-bis"> ${manager.getName()}</p>
+                <p class="title is-5 has-text-white-bis"><i class="fas fa-mug-hot"></i> Manager</p>
             </div>
           </div>                       
             <div class="content">
-                <p>ID:${manager.getId()}</p>
-                <p>Email:<a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></p>
-                <p>Office Number:${manager.getOfficeNumber()}</p>
+                <p>ID: ${manager.getId()}</p>
+                <p>Email:<a href="mailto:${manager.getEmail()}"> ${manager.getEmail()}</a></p>
+                <p>Office Number: ${manager.getOfficeNumber()}</p>
             </div>
             </div>
         </div>                
@@ -36,14 +36,14 @@ const engineerCard = (teamInfo) => {
                 <div class="media-left">
                 </div>
                 <div class="media-content has-background-info py-2 pl-2">
-                  <p class="title is-4 has-text-white-bis">${engineer.getName()}</p>
-                  <p class="subtitle is-6 has-text-white-bis">Engineer</p>
+                  <p class="title is-4 has-text-white-bis"> ${engineer.getName()}</p>
+                  <p class="subtitle is-6 has-text-white-bis"><i class="fas fa-glasses"></i> Engineer</p>
                 </div>
               </div>                  
               <div class="content  has-text-centered">
-                <p>ID:${engineer.getId()}</p>
-                <p>Email:<a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></p>
-                <p>GitHub:<a href="https://github.com/${engineer.getGithub()}" target="_blank">${engineer.getGithub()}</a></p>
+                <p>ID: ${engineer.getId()}</p>
+                <p>Email:<a href="mailto:${engineer.getEmail()}"> ${engineer.getEmail()}</a></p>
+                <p>GitHub:<a href="https://github.com/${engineer.getGithub()}" target="_blank"> ${engineer.getGithub()}</a></p>
               </div>
             </div>
           </div>                
@@ -64,14 +64,14 @@ const internCards = (teamInfo) => {
                 <div class="media-left">
                 </div>
                 <div class="media-content has-background-info py-2 pl-2">
-                  <p class="title is-4 has-text-white-bis">${intern.getName()}</p>
-                  <p class="subtitle is-6 has-text-white-bis">Intern</p>
+                  <p class="title is-4 has-text-white-bis"> ${intern.getName()}</p>
+                  <p class="subtitle is-6 has-text-white-bis"><i class="fas fa-user-graduate"></i> Intern</p>
                 </div>
               </div>                  
               <div class="content  has-text-centered">
-                <p>ID:${intern.getId()}</p>
-                <p>Email:<a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></p>
-                <p>School:${intern.getSchool()}</p>
+                <p>ID: ${intern.getId()}</p>
+                <p>Email:<a href="mailto:${intern.getEmail()}"> ${intern.getEmail()}</a></p>
+                <p>School: ${intern.getSchool()}</p>
               </div>
             </div>
           </div>                
@@ -90,6 +90,7 @@ module.exports = (teamInfo) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <body>
     <header>
